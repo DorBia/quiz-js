@@ -9,15 +9,21 @@
 </head>
 <body>
     <div class="game">
-        <div class="start-game">
-            <h1>Welcome to the quiz game!</h1>
-            <h4 class="previous"></h4>
-            <button class="start-button">start</button>
+        <div class="game__start">
+            <h1 class="game__welcome">Welcome to the quiz game!</h1>
+            <h4 class="game__previous"></h4>
+            <button class="game__button" value="general">General knowledge</button>
+            <button class="game__button" value="sports">Sports</button>
+            <button class="game__button" value="games">Video Games</button>
+            <button class="game__button" value="music">Music</button>
+            <button class="game__button" value="films">Films</button>
+            <button class="game__button" value="everything">Everything</button>
         </div>
 
         <div class="question hidden">
-            <section class="question__text">
-                <h2></h2>
+            <h4 class="timer">30</h4>
+            <section class="question__box">
+                <h2 class="question__text"></h2>
             </section>
             <section class="question__answers"></section>
 
@@ -25,11 +31,11 @@
     </div>
 
     <div class="popup hidden">
-        <h2 class="correct-answer"></h2>
-        <h3 class="score"></h4>
-        <h4>Do you want to continue?</h4>
-        <button class="confirm">Yes</button>
-        <button class="decline">No</button>
+        <h2 class="popup__answer"></h2>
+        <h3 class="popup__score"></h4>
+        <h4 class="popup__text">Do you want to continue?</h4>
+        <button class="popup__confirm">Yes</button>
+        <button class="popup__decline">No</button>
     </div>
     <script src="./script.js"></script>
 </body>
