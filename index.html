@@ -11,9 +11,9 @@
     <div class="game">
         <div class="start-game">
             <h1>Welcome to the quiz game!</h1>
+            <h4 class="previous"></h4>
             <button class="start-button">start</button>
         </div>
-        <h4 class="score"></h4>
 
         <div class="question hidden">
             <section class="question__text">
@@ -22,6 +22,14 @@
             <section class="question__answers"></section>
 
         </div>
+    </div>
+
+    <div class="popup hidden">
+        <h2 class="correct-answer"></h2>
+        <h3 class="score"></h4>
+        <h4>Do you want to continue?</h4>
+        <button class="confirm">Yes</button>
+        <button class="decline">No</button>
     </div>
     <script src="./script.js"></script>
 </body>
