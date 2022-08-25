@@ -51,17 +51,19 @@ startBtn.addEventListener("click", () => {
 });
 
 answersContainer.addEventListener("click", e => {
-    if(e.target.innerText == correct) {
-        e.target.classList.add("correct");
-        score += 1;
-    } else {
-        console.log(e.target)
-        e.target.classList.add("wrong");
-        popAnswer.textContent = `Correct answer: ${correct}`
+    if(e.target.tagName == "BUTTON"){
+        if(e.target.innerText == correct) {
+            e.target.classList.add("correct");
+            score += 1;
+        } else{
+            console.log(e.target)
+            e.target.classList.add("wrong");
+            popAnswer.textContent = `Correct answer: ${correct}`
+        }
+        console.log(correct)
+        updateDisplay(score, questionsCount);
+        popupWindow.classList.remove("hidden");
     }
-    console.log(correct)
-    updateDisplay(score, questionsCount);
-    popupWindow.classList.remove("hidden");
 });
 
 
