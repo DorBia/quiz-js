@@ -9,7 +9,7 @@ const declineButton = document.querySelector(".popup__decline");
 const popAnswer = document.querySelector(".popup__answer");
 const previousScore = document.querySelector(".game__previous");
 const startBtn = document.querySelectorAll(".game__button");
-const timerScore = document.querySelector(".timer");
+const timerScore = document.querySelector(".question__timer");
 
 let correct = "";
 let score = 0;
@@ -54,6 +54,10 @@ const updateDisplay = (scr, ques) => {
     scoring.innerText = `Your score is: ${scr} / ${ques}`
 }
 
+updateTimer = () => {
+    timerScore.innerHTML = timer;
+}
+
 // get question from the API
 const getQuestion = async () => {
     const response = await fetch(currentCategory);
@@ -65,6 +69,8 @@ const getQuestion = async () => {
 const updateQuestion = async () => {
     isAnswered = false;
     questionsCount += 1;
+    timer = 30;
+    updateTimer();
     answersContainer.innerHTML = ""
     const data = await getQuestion();
     questionText.innerHTML = data.question;
@@ -79,7 +85,7 @@ const updateQuestion = async () => {
         <button class="question__answer">${answer}</button>`
     });
 
-    timer = 30;
+    
     setTimeout(() => {
         let intervalID = setInterval(() => {
           if (timer === 0) {
@@ -114,7 +120,6 @@ answersContainer.addEventListener("click", e => {
             e.target.classList.add("correct");
             score += 1;
         } else{
-            console.log(e.target)
             e.target.classList.add("wrong");
             popAnswer.textContent = `Correct answer: ${correct}`
         }
@@ -140,7 +145,3 @@ declineButton.addEventListener("click", () => {
     questionScreen.classList.add("hidden");
     startingScreen.classList.remove("hidden");
 })
-
-updateTimer = () => {
-    timerScore.innerHTML = timer;
-}
