@@ -1,10 +1,20 @@
+$color-primary: #07092f;
+$color-secondary:#ff8c32;
+$color-third: #f8a56d;
+$color-fourth: #dddddd;
+$color-fifth: #eeeeee;
+
 * {
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #5f5f5f;
+    background-color: $color-primary;
+}
+
+button {
+    cursor: pointer;
 }
 .game {
     height: 100vh;
@@ -32,7 +42,7 @@ body {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-
+    color: $color-fifth;
     // border: 2px solid black;
     border-radius:50px;
 }
@@ -45,6 +55,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 1.3rem;
 }
 
 h2 {
@@ -66,14 +77,21 @@ h1 {
 .question__answer {
     border-radius: 20px;
     margin: 10px;
+    background-color: $color-secondary;
+    color: $color-fifth;
+    font-size: 1.3rem;
+
+    &:hover {
+        background-color: $color-third;
+    }
 }
 
 .correct {
-    background-color: lightgreen;
+    background-color: #95cf92;
 }
 
 .wrong {
-    background-color: crimson;
+    background-color: #de324c;
 }
 
 .hidden {
@@ -93,17 +111,21 @@ h1 {
     align-items: center;
     justify-content: center;
     position: absolute;
-    left: 10%;
+    left: 15%;
     top: 30%;
-    opacity: 0.9;
-    width: 80vw;
-    height: 40vh;
+    opacity: 0.85;
+    width: 70vw;
+    height: 35vh;
     border-radius: 20px;
-    background-color: rgb(159, 228, 251);
+    background-color: $color-fourth;
+    font-size: 1.2rem;
+    color: $color-primary;
 
     button {
-        padding: 1.5rem 7rem;
-        margin: 1rem;
+        padding: 1rem 4rem;
+        margin: 0.8rem;
         border-radius: 20px;
+        font-size: 1.2rem;
+
     }
 }
