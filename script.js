@@ -1,22 +1,29 @@
+// starting screen
+const startingScreen = document.querySelector(".game__start");
+const startBtn = document.querySelectorAll(".game__button");
+const previousScore = document.querySelector(".game__previous");
+
+// question screen
+const questionScreen = document.querySelector(".question");
 const questionText = document.querySelector(".question__text");
 const answersContainer = document.querySelector(".question__answers");
-const scoring = document.querySelector(".popup__score");
-const startingScreen = document.querySelector(".game__start");
-const questionScreen = document.querySelector(".question");
+const timerScore = document.querySelector(".question__timer");
+const scoreOnScreen = document.querySelector(".question__score");
+
+// popup 
 const popupWindow = document.querySelector(".popup");
+const popAnswer = document.querySelector(".popup__answer");
+const popupScore = document.querySelector(".popup__score");
 const confirmButton = document.querySelector(".popup__confirm");
 const declineButton = document.querySelector(".popup__decline");
-const popAnswer = document.querySelector(".popup__answer");
-const previousScore = document.querySelector(".game__previous");
-const startBtn = document.querySelectorAll(".game__button");
-const timerScore = document.querySelector(".question__timer");
+
 
 let correct = "";
 let score = 0;
 let questionsCount = 0;
 let currentCategory = "";
 
-let timer = 30;
+let timer = 0;
 let isAnswered = false;
 
 const general = "https://opentdb.com/api.php?amount=1&category=9";
@@ -49,13 +56,33 @@ const categoryChoice = (category) => {
     }
 }
 
-
-const updateDisplay = (scr, ques) => {
-    scoring.innerText = `Your score is: ${scr} / ${ques}`
+const updateTimer = () => {
+    timerScore.innerHTML = timer;
 }
 
-updateTimer = () => {
-    timerScore.innerHTML = timer;
+const displayPopup = () => {
+    isAnswered = true;
+    popAnswer.textContent = `Correct answer: ${correct}`
+    popupScore.innerText = `Your score is: ${score} / ${questionsCount}`
+    popupWindow.classList.remove("hidden");
+}
+
+const setTimer = () => {
+    timer = 15;
+    timerScore.removeAttribute("style", "color: red");
+    updateTimer();
+    let intervalID = setInterval(() => {
+        if (timer === 0 || isAnswered) {
+            displayPopup();
+            clearInterval(intervalID);
+        } else {
+            if (timer <=6) {
+                timerScore.setAttribute("style", "color: red");
+            }
+            timer -= 1;
+            updateTimer();
+        }
+    }, 1000);
 }
 
 // get question from the API
@@ -65,12 +92,7 @@ const getQuestion = async () => {
     return data.results[0];
 }
 
-// update question
 const updateQuestion = async () => {
-    isAnswered = false;
-    questionsCount += 1;
-    timer = 30;
-    updateTimer();
     answersContainer.innerHTML = ""
     const data = await getQuestion();
     questionText.innerHTML = data.question;
@@ -84,33 +106,25 @@ const updateQuestion = async () => {
         answersContainer.innerHTML += `
         <button class="question__answer">${answer}</button>`
     });
-
-    
-    setTimeout(() => {
-        let intervalID = setInterval(() => {
-          if (timer === 0) {
-            isAnswered = true;
-            popAnswer.textContent = `Correct answer: ${correct}`
-            updateDisplay(score, questionsCount);
-            popupWindow.classList.remove("hidden");
-            clearInterval(intervalID);
-          } else {
-            timer -= 1;
-            updateTimer();
-            if (isAnswered) {
-                clearInterval(intervalID);
-            }
-          }
-        }, 1000);
-      }, 0);
 }
 
+// show question and start timer
+const updateQuestionScreen = () => {
+    scoreOnScreen.innerText = `${score} / ${questionsCount}`;
+    isAnswered = false;
+    questionsCount += 1;
+    
+    updateQuestion();
+    setTimer();
+}
+
+// event listeners
 startBtn.forEach(btn => {
     btn.addEventListener("click", e => {
         startingScreen.classList.add("hidden");
         questionScreen.classList.remove("hidden")
         categoryChoice(e.target.value);
-        updateQuestion();
+        updateQuestionScreen();
     });
 })
 
@@ -121,26 +135,21 @@ answersContainer.addEventListener("click", e => {
             score += 1;
         } else{
             e.target.classList.add("wrong");
-            popAnswer.textContent = `Correct answer: ${correct}`
         }
-        updateDisplay(score, questionsCount);
-        popupWindow.classList.remove("hidden");
-        isAnswered = true;
+        displayPopup();
     }
 });
 
 
 confirmButton.addEventListener("click", () => {
-    popAnswer.textContent = "";
     popupWindow.classList.add("hidden");
-    updateQuestion();
+    updateQuestionScreen();
 });
 
 declineButton.addEventListener("click", () => {
     previousScore.textContent = `Your last score was: ${score} / ${questionsCount}`
     score = 0;
     questionsCount = 0;
-    popAnswer.textContent = "";
     popupWindow.classList.add("hidden");
     questionScreen.classList.add("hidden");
     startingScreen.classList.remove("hidden");
