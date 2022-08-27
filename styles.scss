@@ -170,3 +170,16 @@ h1 {
 
     }
 }
+
+@media screen and (min-width: 850px) {
+
+    .question__text {
+        width: 86%;
+    }
+    .question__answers {
+        grid-template-columns: 1fr 1fr;
+    }
+    .question__answer {
+        margin: 1rem;
+    }
+}

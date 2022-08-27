@@ -148,3 +148,17 @@ h1 {
   border-radius: 20px;
   font-size: 1.3rem;
 }
+
+@media screen and (min-width: 850px) {
+  .question__text {
+    width: 86%;
+  }
+
+  .question__answers {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .question__answer {
+    margin: 1rem;
+  }
+}
