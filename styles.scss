@@ -22,11 +22,14 @@ button {
     cursor: pointer;
 }
 .game {
+    max-width: 1600px;
     height: 100vh;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     &__start {
         height: 90vh;
@@ -59,7 +62,6 @@ button {
 
 
 .question {
-    max-width: 1600px;
     width: 95%;
     height: 85%;
     display: flex;
@@ -88,7 +90,7 @@ button {
     &__answers {
         // border: 2px solid black;
         width: 90%;
-        height: 60%;
+        height: 70%;
         border-radius:50px;
         padding: 5%;
         display: grid;
@@ -114,17 +116,20 @@ button {
         justify-content: flex-start;
         align-items: center;
         font-size: 2.5rem;
+        position: relative;
+        margin-bottom: 20px;
     }
 
     &__timer {
-        margin-left: 30%;
         font-size: 4rem;
-
+        position: absolute;
+        left: 48%;
     }
 }
 
 h2 {
     text-align: center;
+    padding: 3px;
 }
 h1 {
     margin-top: 30px;
@@ -149,75 +154,19 @@ h1 {
     align-items: center;
     justify-content: space-around;
     position: absolute;
-    left: 15%;
     top: 40%;
     opacity: 0.85;
-    width: 70vw;
-    height: 35vh;
+    width: 75%;
+    height: 40%;
     border-radius: 20px;
-    background-color: $color-fourth;
+    background-color: #dddddd;
     font-size: 1.2rem;
-    color: $color-primary;
+    color: #07092f;
 
     button {
         padding: 1rem 4rem;
         border-radius: 20px;
-        font-size: 1.2rem;
+        font-size: 1.3rem;
 
-    }
-}
-
-@media screen and (min-width: 810px) {
-    .question__timer {
-        margin-left: 35%;
-    }
-}
-
-@media screen and (min-width: 850px) {
-
-    .question__text {
-        width: 86%;
-    }
-    .question__answers {
-        grid-template-columns: 1fr 1fr;
-    }
-    .question__answer {
-        margin: 1rem;
-    }
-    .popup {
-        top: 35%;
-    }
-    .question__timer {
-        margin-left: 40%;
-    }
-}
-
-@media screen and (min-width: 1600px) {
-    .popup {
-        width: 60vw;
-        left: 20%;
-    }
-    .question__timer {
-        margin-left: 45%;
-    }
-}
-
-@media screen and (min-width: 2000px) {
-    .popup {
-        width: 50vw;
-        left: 25%;
-    }
-}
-@media screen and (min-width: 2650px) {
-    .popup {
-        width: 40vw;
-        left: 30%;
-    }
-}
-
-@media screen and (min-width: 3200px) {
-    .popup {
-        width: 40vw;
-        left: 30%;
     }
 }

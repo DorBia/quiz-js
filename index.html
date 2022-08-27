@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game</title>
     <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/x-icon" href="favicon-quiz.ico?">
 </head>
 <body>
     <div class="game">
@@ -29,17 +30,18 @@
                 <h2 class="question__text"></h2>
             </section>
             <section class="question__answers"></section>
-
+        </div>
+        
+        <div class="popup hidden">
+            <h2 class="popup__answer"></h2>
+            <h3 class="popup__score"></h4>
+            <h4 class="popup__text">Do you want to continue?</h4>
+            <button class="popup__confirm">Yes</button>
+            <button class="popup__decline">No</button>
         </div>
     </div>
 
-    <div class="popup hidden">
-        <h2 class="popup__answer"></h2>
-        <h3 class="popup__score"></h4>
-        <h4 class="popup__text">Do you want to continue?</h4>
-        <button class="popup__confirm">Yes</button>
-        <button class="popup__decline">No</button>
-    </div>
+    
     <script src="./script.js"></script>
 </body>
 </html>

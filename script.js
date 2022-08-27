@@ -93,6 +93,10 @@ const getQuestion = async () => {
 }
 
 const updateQuestion = async () => {
+    scoreOnScreen.innerText = `${score} / ${questionsCount}`;
+    isAnswered = false;
+    questionsCount += 1;
+
     answersContainer.innerHTML = ""
     const data = await getQuestion();
     questionText.innerHTML = data.question;
@@ -106,17 +110,10 @@ const updateQuestion = async () => {
         answersContainer.innerHTML += `
         <button class="question__answer">${answer}</button>`
     });
-}
 
-// show question and start timer
-const updateQuestionScreen = () => {
-    scoreOnScreen.innerText = `${score} / ${questionsCount}`;
-    isAnswered = false;
-    questionsCount += 1;
-    
-    updateQuestion();
     setTimer();
 }
+
 
 // event listeners
 startBtn.forEach(btn => {
@@ -124,7 +121,7 @@ startBtn.forEach(btn => {
         startingScreen.classList.add("hidden");
         questionScreen.classList.remove("hidden")
         categoryChoice(e.target.value);
-        updateQuestionScreen();
+        updateQuestion();
     });
 })
 
@@ -143,7 +140,7 @@ answersContainer.addEventListener("click", e => {
 
 confirmButton.addEventListener("click", () => {
     popupWindow.classList.add("hidden");
-    updateQuestionScreen();
+    updateQuestion();
 });
 
 declineButton.addEventListener("click", () => {
